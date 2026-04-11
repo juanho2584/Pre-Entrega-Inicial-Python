@@ -1,0 +1,92 @@
+{
+    "1": {
+        "id": 1,
+        "codigo": "LEC001",
+        "nombre": "Leche Entera",
+        "categoria": "Lácteos",
+        "stock": 50,
+        "precio": 1.25,
+        "descripcion": "Leche entera pasteurizada, 1 litro"
+    },
+    "2": {
+        "id": 2,
+        "codigo": "PAN001",
+        "nombre": "Pan Integral",
+        "categoria": "Panadería",
+        "stock": 30,
+        "precio": 0.85,
+        "descripcion": "Pan integral artesanal, 500 gramos"
+    },
+    "3": {
+        "id": 3,
+        "codigo": "FRU001",
+        "nombre": "Manzanas Rojas",
+        "categoria": "Frutas",
+        "stock": 25,
+        "precio": 2.5,
+        "descripcion": "Manzanas rojas frescas, 1 kg"
+    },
+    "4": {
+        "id": 4,
+        "codigo": "GRA001",
+        "nombre": "Arroz Largo",
+        "categoria": "Granos",
+        "stock": 100,
+        "precio": 1.1,
+        "descripcion": "Arroz blanco de grano largo, 1 kg"
+    },
+    "5": {
+        "id": 5,
+        "codigo": "CAR001",
+        "nombre": "Pechuga de Pollo",
+        "categoria": "Carnes",
+        "stock": 15,
+        "precio": 4.5,
+        "descripcion": "Pechuga de pollo sin hueso, 1 kg"
+    },
+    "6": {
+        "id": 6,
+        "codigo": "LAC002",
+        "nombre": "Yogur Natural",
+        "categoria": "Lácteos",
+        "stock": 40,
+        "precio": 0.95,
+        "descripcion": "Yogur natural sin azúcar, 1 litro"
+    },
+    "7": {
+        "id": 7,
+        "codigo": "VER001",
+        "nombre": "Tomates",
+        "categoria": "Verduras",
+        "stock": 20,
+        "precio": 1.8,
+        "descripcion": "Tomates perita, 1 kg"
+    },
+    "8": {
+        "id": 8,
+        "codigo": "BEB001",
+        "nombre": "Café Molido",
+        "categoria": "Bebidas",
+        "stock": 35,
+        "precio": 3.2,
+        "descripcion": "Café tostado molido, 500 gramos"
+    },
+    "9": {
+        "id": 9,
+        "codigo": "SNK001",
+        "nombre": "Galletas de Avena",
+        "categoria": "Snacks",
+        "stock": 45,
+        "precio": 1.5,
+        "descripcion": "Galletas integrales de avena, 200 gramos"
+    },
+    "10": {
+        "id": 10,
+        "codigo": "LIM001",
+        "nombre": "Detergente Líquido",
+        "categoria": "Limpieza",
+        "stock": 70,
+        "precio": 2.8,
+        "descripcion": "Detergente para ropa, 1 litro"
+    }
+}
