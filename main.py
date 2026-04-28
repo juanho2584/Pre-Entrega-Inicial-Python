@@ -6,8 +6,8 @@ def mostrar_menu_principal():
     print("╠════════════════════════════════════════════╣")
     print("║  1. ➕ Crear producto                      ║")
     print("║  2. 🔍 Mostrar productos                   ║")
-    print("║  3. ✏️ Actualizar producto                  ║")
-    print("║  4. 🗑️ Eliminar producto                    ║")
+    print("║  3. ✏️  Actualizar producto                 ║")
+    print("║  4. 🗑️  Eliminar producto                   ║")
     print("║  5. 🚪 Salir                               ║")
     print("╚════════════════════════════════════════════╝")
 
