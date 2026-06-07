@@ -1,4 +1,5 @@
 import crud
+import auth
 
 def mostrar_menu_principal():
     print("\n╔════════════════════════════════════════════╗")
@@ -79,6 +80,9 @@ def submenu_mostrar():
             print("❌ Opción no válida. Intenta de nuevo.")
 
 def main():
+    if not auth.menu_login():
+        return
+        
     while True:
         mostrar_menu_principal()
         opcion = input("\n👉 Elige una opción (1-5): ").strip()

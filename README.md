@@ -4,17 +4,19 @@ Proyecto de consola en Python para gestionar un inventario de productos con oper
 
 ## Descripción
 
-Esta aplicación permite mantener un catálogo de productos desde la terminal mediante un menú interactivo. Los usuarios pueden crear nuevos productos, consultar información, actualizar datos existentes y eliminar productos.
+Esta aplicación permite mantener un catálogo de productos desde la terminal mediante un menú interactivo. Cuenta con un sistema de autenticación de usuarios y permite crear, consultar, actualizar y eliminar productos.
 
-El sistema trabaja con un archivo local `productos.json`, por lo que los cambios se guardan entre ejecuciones.
+El sistema trabaja con archivos locales `productos.json` y `usuarios.json`, por lo que los datos y credenciales persisten entre ejecuciones.
 
 ## Estructura del proyecto
 
-- `main.py`: punto de entrada principal del programa. Contiene los menús de interacción con el usuario y realiza las llamadas a las funciones del CRUD.
+- `main.py`: punto de entrada principal del programa. Gestiona la llamada inicial al inicio de sesión, los menús de interacción y las funciones del CRUD.
+- `auth.py`: lógica de autenticación. Administra el registro, inicio de sesión, y límites de intentos para acceder al sistema.
 - `crud.py`: lógica de negocio para crear, leer, actualizar y eliminar productos. También valida códigos únicos, stock y precio.
-- `datos.py`: lectura y escritura de datos en el archivo JSON. Convierte las claves del JSON entre `str` e `int` para trabajar internamente con IDs numéricos.
-- `config.py`: configuración básica del proyecto, incluyendo la ruta absoluta de `productos.json`.
+- `datos.py`: lectura y escritura de datos en los archivos JSON. Convierte las claves del JSON entre `str` e `int` para trabajar internamente con IDs numéricos.
+- `config.py`: configuración básica del proyecto.
 - `productos.json`: almacena los productos registrados en formato JSON.
+- `usuarios.json`: almacena las credenciales de acceso de los usuarios registrados.
 
 ## Modelo de datos
 
@@ -53,7 +55,14 @@ Ejecuta el siguiente comando desde la carpeta del proyecto:
 python main.py
 ```
 
-A continuación se desplegará el menú principal con las siguientes opciones:
+Al iniciar, el sistema te presentará un menú de control de acceso:
+1. Iniciar sesión
+2. Registrarse
+3. Salir
+
+Si es tu primera vez, deberás registrarte primero y luego iniciar sesión (cuenta con una seguridad de máximo 3 intentos fallidos consecutivos, de lo contrario el programa se cierra).
+
+Una vez autenticado exitosamente, se desplegará el menú principal de productos con las siguientes opciones:
 
 1. Crear producto
 2. Mostrar productos
@@ -96,6 +105,8 @@ Dentro de "Mostrar productos" se puede elegir:
 
 ## Validaciones incluidas
 
+- Validación de usuario (mín. 3 caracteres) y contraseña (mín. 4 caracteres) al registrarse.
+- Bloqueo por seguridad después de 3 intentos de inicio de sesión fallidos.
 - Código, nombre y categoría son obligatorios al crear un producto.
 - El stock no puede ser negativo.
 - El precio debe ser mayor que 0.
