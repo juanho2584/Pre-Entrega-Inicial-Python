@@ -1,5 +1,6 @@
 import crud
 import auth
+from db import inicializar_db
 
 def mostrar_menu_principal():
     print("\n╔════════════════════════════════════════════╗")
@@ -80,6 +81,7 @@ def submenu_mostrar():
             print("❌ Opción no válida. Intenta de nuevo.")
 
 def main():
+    inicializar_db()
     if not auth.menu_login():
         return
         

@@ -1,5 +1,5 @@
 import os
 
-# Ruta absoluta al archivo JSON (para evitar problemas desde donde se ejecute)
+# Ruta absoluta al archivo de base de datos SQLite
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FILE_PATH = os.path.join(BASE_DIR, 'productos.json')
+DB_PATH = os.path.join(BASE_DIR, 'inventario.db')
