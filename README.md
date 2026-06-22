@@ -35,6 +35,7 @@ El sistema trabaja con una base de datos local SQLite (`inventario.db`), asegura
 ## Requisitos
 
 - Python 3.7 o superior
+- Biblioteca `colorama` (para colorear la terminal)
 
 ## Instalación
 
@@ -47,7 +48,11 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-No hay dependencias externas adicionales; el proyecto usa únicamente `sqlite3`, el cual viene integrado en la biblioteca estándar de Python.
+4. Instalar las dependencias requeridas:
+
+```bash
+pip install colorama
+```
 
 ## Uso
 
@@ -70,7 +75,8 @@ Una vez autenticado exitosamente, se desplegará el menú principal de productos
 2. Mostrar productos
 3. Actualizar producto
 4. Eliminar producto
-5. Salir
+5. Reporte de stock
+6. Salir
 
 ### Submenú de visualización
 

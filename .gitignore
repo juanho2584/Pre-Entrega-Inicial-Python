@@ -25,6 +25,7 @@ dist/
 # Logs and databases
 *.log
 *.sqlite3
+inventario.db
 
 # macOS
 .DS_Store

@@ -1,6 +1,11 @@
 import crud
 import auth
 from db import inicializar_db
+from colorama import init, Fore, Style
+
+# Inicializar colorama para soporte de colores en consolas Windows y UNIX
+init(autoreset=True)
+
 
 def mostrar_menu_principal():
     print("\n╔════════════════════════════════════════════╗")
@@ -10,7 +15,8 @@ def mostrar_menu_principal():
     print("║  2. 🔍 Mostrar productos                   ║")
     print("║  3. ✏️  Actualizar producto                 ║")
     print("║  4. 🗑️  Eliminar producto                   ║")
-    print("║  5. 🚪 Salir                               ║")
+    print("║  5. 📊 Reporte de stock                    ║")
+    print("║  6. 🚪 Salir                               ║")
     print("╚════════════════════════════════════════════╝")
 
 def mostrar_menu_productos():
@@ -34,6 +40,60 @@ def imprimir_producto(prod):
     if prod.get('descripcion'):
         print(f"  📝 Info:      {prod['descripcion']}")
     print("---------------------------------------------")
+
+def imprimir_reporte_stock():
+    resultados = crud.listar_productos()
+    if not resultados:
+        print(Fore.RED + "\n❌ No hay productos registrados para generar el reporte.")
+        return
+
+    print(Fore.CYAN + Style.BRIGHT + "\n╔══════════════════════════════════════════════════════════════════════════════════════╗")
+    print(Fore.CYAN + Style.BRIGHT + "║                          📊 REPORTE DE CONTROL DE STOCK                              ║")
+    print(Fore.CYAN + Style.BRIGHT + "╚══════════════════════════════════════════════════════════════════════════════════════╝")
+    print(f"📦 Total de productos registrados: {Fore.WHITE + Style.BRIGHT}{len(resultados)}")
+    print("Leyenda de alertas: " + Fore.RED + "■ Bajo (<5)" + Fore.RESET + "  " + Fore.YELLOW + "■ Moderado (<8)" + Fore.RESET + "  " + Fore.GREEN + "■ Óptimo (>=8)\n")
+
+    # Cabecera de la Tabla
+    print(Fore.BLUE + "┌" + "─"*6 + "┬" + "─"*12 + "┬" + "─"*22 + "┬" + "─"*17 + "┬" + "─"*9 + "┬" + "─"*12 + "┐")
+    print(Fore.BLUE + "│" + Fore.CYAN + Style.BRIGHT + f" {'ID':<4} " +
+          Fore.BLUE + "│" + Fore.CYAN + Style.BRIGHT + f" {'Código':<10} " +
+          Fore.BLUE + "│" + Fore.CYAN + Style.BRIGHT + f" {'Nombre':<20} " +
+          Fore.BLUE + "│" + Fore.CYAN + Style.BRIGHT + f" {'Categoría':<15} " +
+          Fore.BLUE + "│" + Fore.CYAN + Style.BRIGHT + f" {'Stock':<7} " +
+          Fore.BLUE + "│" + Fore.CYAN + Style.BRIGHT + f" {'Precio':<10} " +
+          Fore.BLUE + "│")
+    print(Fore.BLUE + "├" + "─"*6 + "┼" + "─"*12 + "┼" + "─"*22 + "┼" + "─"*17 + "┼" + "─"*9 + "┼" + "─"*12 + "┤")
+
+    for prod in resultados:
+        stock = prod['stock']
+        if stock < 5:
+            color = Fore.RED + Style.BRIGHT
+        elif stock < 8:
+            color = Fore.YELLOW + Style.BRIGHT
+        else:
+            color = Fore.GREEN + Style.BRIGHT
+        
+        # Truncar nombre o categoría si exceden el límite de columnas para mantener la grilla alineada
+        nombre = prod['nombre'][:20]
+        categoria = prod['categoria'][:15]
+        
+        id_str = f"{prod['id']:<4}"
+        code_str = f"{prod['codigo']:<10}"
+        name_str = f"{nombre:<20}"
+        cat_str = f"{categoria:<15}"
+        stock_str = f"{prod['stock']:<7}"
+        price_str = f"${prod['precio']:.2f}"
+        
+        print(Fore.BLUE + "│" + color + f" {id_str} " +
+              Fore.BLUE + "│" + color + f" {code_str} " +
+              Fore.BLUE + "│" + color + f" {name_str} " +
+              Fore.BLUE + "│" + color + f" {cat_str} " +
+              Fore.BLUE + "│" + color + f" {stock_str} " +
+              Fore.BLUE + "│" + color + f" {price_str:<10} " +
+              Fore.BLUE + "│")
+              
+    print(Fore.BLUE + "└" + "─"*6 + "┴" + "─"*12 + "┴" + "─"*22 + "┴" + "─"*17 + "┴" + "─"*9 + "┴" + "─"*12 + "┘")
+    print()
 
 def submenu_mostrar():
     while True:
@@ -87,7 +147,7 @@ def main():
         
     while True:
         mostrar_menu_principal()
-        opcion = input("\n👉 Elige una opción (1-5): ").strip()
+        opcion = input("\n👉 Elige una opción (1-6): ").strip()
 
         if opcion == "1":
             print("\n--- ➕ CREAR NUEVO PRODUCTO ---")
@@ -143,6 +203,9 @@ def main():
             crud.eliminar_producto(id_prod)
 
         elif opcion == "5":
+            imprimir_reporte_stock()
+
+        elif opcion == "6":
             print("\n👋 ¡Gracias por utilizar el Sistema de Gestión de Productos!")
             break
 
